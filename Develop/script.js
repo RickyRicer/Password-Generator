@@ -29,20 +29,35 @@ console.log(getRandomUpper());
 
 // Prompt Password Length
 
-let answer = prompt('Please select a length between 8 and 128');
-let response;
+// let answer = prompt('Please select a character length between 8 and 128');
+//let response;
+//
+//if(answer.length === 0){
+//  response = 'You must enter a number between 8 and 128';
+//} else if(answer.length < 8){
+//  response = 'You must enter a number between 8 and 128';
+//} else if (answer.length > 128) {
+//  response = 'You must enter a number between 8 and 128';
+//}
 
-if(answer.length === 0){
-  response = 'You must enter a number between 8 and 128';
-} else if(answer.length > 8){
-  response = 'You must enter a number between 8 and 128';
-} else if (answer.length < 128) {
-  response = 'You must enter a number between 8 and 128';
+//alert(response);
+
+let answer = prompt('Please enter a character length between 8 and 128').length;
+
+let responses = {
+more: 'You must enter a number between 8 and 128',
+less: 'You must enter a number between 8 and 128',
+default: 'You didn\'t answer?'
 }
 
-alert(response);
+alert(answer == 0 && responses.default || answer < 8 && responses.less || answer > 128 && responses.more);
 
-let yesLower = confirm(`Would you like to include lower case letters?`)
+// Password Selectors
+
+let yesLower = confirm(`Would you like to include lowercase letters?`)
+let yesUpper = confirm('Would you like to include uppercase letters?')
+let yesNumber = confirm('Would you like to include numbers?')
+let yesSymbol = confirm('Would you like to include symbols?')
 
 function generatePassword(){
   console.log("Generating password...");
