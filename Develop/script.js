@@ -1,108 +1,68 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Password characters
+const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numbers = '1234567890';
+const symbols = '!"#$%&()*+,-./:;<=>?@[\]^_{|}~';
+
 function generatePassword() {
   // Prompt Password Length
   let password = '';
   let passwordChar = '';
-  
+
   let answerLength = prompt('Please select a character length between 8 and 128');
   answerLength = parseInt(answerLength);
-  
+
   if (answerLength < 8) {
-    alert = ('You must have more than 7 character!');
+    alert('You must have more than 7 character!');
+    return;
   } else if (answerLength > 128) {
-    response = 'You must not have more than 128 characters!';
-    };
-    console.log(answerLength);
-  
+    alert('You must not have more than 128 characters!');
+    return;
+  };
+
   // Password Selectors
-  
+
   let lower = confirm('Would you like to include lowercase letters?');
   if (lower) {
-    passwordChar += lower;
+    passwordChar += lowercase;
   };
-  
+
   let upper = confirm('Would you like to include uppercase letters?');
   if (upper) {
-    passwordChar += upper;
+    passwordChar += uppercase;
   }
-  
+
   let number = confirm('Would you like to include numbers?')
-  if (number){
-    passwordChar += number;
+  if (number) {
+    passwordChar += numbers;
   }
-  
+
   let symbol = confirm('Would you like to include symbols?')
-  if (symbol){
-    passwordChar += symbol;
+  if (symbol) {
+    passwordChar += symbols;
   }
+
   for (let i = 0; i < answerLength; i++) {
-    password = passwordChar[Math.floor(Math.random() * passwordChar.length)]
+    password += passwordChar[Math.floor(Math.random() * passwordChar.length)]
   }
-  console.log(password);
-  
-  // const typesCount = lower + upper + number + symbol;
-  
-  // const typesArr = [{ lower }, { upper }, { number }, { symbol },].filter (
-  //   item => Object.values(item)[0]
-  //   );
-    
-  //   if(typesCount === 0) {
-  //     return '';
-  //   }
-    
-  //   for(let i = 0; i < length; i += typesCount) {
-  //     typesArr.forEach(type =>{
-  //       const funcName = Object.keys(type)[0];
-        
-  //       generatePassword += randomFunc[funcName]();
-  //     });
-  //   }
 
-  }
-  
-  // Write password to the #password input
-  function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("password");
-    
-    generatePassword.value = password;
-    
-  }
-  
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
-
-
-
-// Random Generator Functions
-
-const randomFunc = {
-  lower: randomLower,
-  upper: randomUpper,
-  number: randomNumber,
-  symbols: randomSymbol,
+  return password;
 }
 
-// Random Lowercase
-function randomLower() {
-  return String.fromCharCode(Math.floor(Math.random() *26) + 97);
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.innerHTML = ("password", password);
+
 }
 
-// Random Uppercase
-function randomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() *26) + 65);
-}
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
-// Random Numbers
-function randomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48)
-}
 
-//Random Symbols
-function randomSymbol() {
-  const symbols = '!"#$%&()*+,-./:;<=>?@[\]^_{|}~';
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
 
