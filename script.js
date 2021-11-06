@@ -7,6 +7,7 @@ const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numbers = '1234567890';
 const symbols = '!"#$%&()*+,-./:;<=>?@[\]^_{|}~';
 
+//Password Generator
 function generatePassword() {
   // Prompt Password Length
   let password = '';
@@ -16,10 +17,10 @@ function generatePassword() {
   answerLength = parseInt(answerLength);
 
   if (answerLength < 8) {
-    alert('You must have more than 7 character!');
+    alert('You must have 8 or more characters!');
     return;
   } else if (answerLength > 128) {
-    alert('You must not have more than 128 characters!');
+    alert('You must have 128 characters or less!');
     return;
   };
 
