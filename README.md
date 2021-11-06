@@ -14,8 +14,7 @@ Here is a screenshot of my webpage on desktop:
   
 ## Demo
 
-https://rickyricer.github.io/RickAnsayFullStackPortfolio/
-
+https://rickyricer.github.io/Password-Generator/
   
 ## Feedback
 
