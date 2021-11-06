@@ -1,10 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-
-
-
 function generatePassword() {
   // Prompt Password Length
   let password = '';
@@ -15,10 +11,10 @@ function generatePassword() {
   
   if (answerLength < 8) {
     alert = ('You must have more than 7 character!');
-    
-  } if (answerLength > 128) {
+  } else if (answerLength > 128) {
     response = 'You must not have more than 128 characters!';
     };
+    console.log(answerLength);
   
   // Password Selectors
   
@@ -41,25 +37,28 @@ function generatePassword() {
   if (symbol){
     passwordChar += symbol;
   }
-  let generatedPassword = '';
+  for (let i = 0; i < answerLength; i++) {
+    password = passwordChar[Math.floor(Math.random() * passwordChar.length)]
+  }
+  console.log(password);
   
-  const typesCount = lower + upper + number + symbol;
+  // const typesCount = lower + upper + number + symbol;
   
-  const typesArr = [{ lower }, { upper }, { number }, { symbol },].filter (
-    item => Object.values(item)[0]
-    );
+  // const typesArr = [{ lower }, { upper }, { number }, { symbol },].filter (
+  //   item => Object.values(item)[0]
+  //   );
     
-    if(typesCount === 0) {
-      return '';
-    }
+  //   if(typesCount === 0) {
+  //     return '';
+  //   }
     
-    for(let i = 0; i < length; i += typesCount) {
-      typesArr.forEach(type =>{
-        const funcName = Object.keys(type)[0];
+  //   for(let i = 0; i < length; i += typesCount) {
+  //     typesArr.forEach(type =>{
+  //       const funcName = Object.keys(type)[0];
         
-        generatePassword += randomFunc[funcName]();
-      });
-    }
+  //       generatePassword += randomFunc[funcName]();
+  //     });
+  //   }
 
   }
   
@@ -107,4 +106,3 @@ function randomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
-console.log(randomUpper());
