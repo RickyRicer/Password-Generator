@@ -3,41 +3,52 @@ var generateBtn = document.querySelector("#generate");
 
 
 
-// Prompt Password Length
-
-let answer = prompt('Please select a character length between 8 and 128');
-let response;
-
-if(answer.length === 0){
-  response = 'You must enter a number between 8 and 128';
-} else if(answer.length < 8){
-  response = 'You must enter a number between 8 and 128';
-} else if (answer.length > 128) {
-  response = 'You must enter a number between 8 and 128';
-}
-
-alert(response);
 
 
-// Password Selectors
-
-let lower = confirm(`Would you like to include lowercase letters?`)
-let upper = confirm('Would you like to include uppercase letters?')
-let number = confirm('Would you like to include numbers?')
-let symbol = confirm('Would you like to include symbols?')
-
-function generatePassword(lower, upper, number, symbol, length) {
+function generatePassword() {
+  // Prompt Password Length
+  let password = '';
+  let passwordChar = '';
+  
+  let answerLength = prompt('Please select a character length between 8 and 128');
+  answerLength = parseInt(answerLength);
+  
+  if (answerLength < 8) {
+    alert = ('You must have more than 7 character!');
+    
+  } if (answerLength > 128) {
+    response = 'You must not have more than 128 characters!';
+    };
+  
+  // Password Selectors
+  
+  let lower = confirm('Would you like to include lowercase letters?');
+  if (lower) {
+    passwordChar += lower;
+  };
+  
+  let upper = confirm('Would you like to include uppercase letters?');
+  if (upper) {
+    passwordChar += upper;
+  }
+  
+  let number = confirm('Would you like to include numbers?')
+  if (number){
+    passwordChar += number;
+  }
+  
+  let symbol = confirm('Would you like to include symbols?')
+  if (symbol){
+    passwordChar += symbol;
+  }
   let generatedPassword = '';
   
   const typesCount = lower + upper + number + symbol;
-  
-  console.log('typesCount: ', typesCount);
   
   const typesArr = [{ lower }, { upper }, { number }, { symbol },].filter (
     item => Object.values(item)[0]
     );
     
-    console.log('typesArr: ', typesArr);
     if(typesCount === 0) {
       return '';
     }
@@ -46,30 +57,25 @@ function generatePassword(lower, upper, number, symbol, length) {
       typesArr.forEach(type =>{
         const funcName = Object.keys(type)[0];
         
-        generatedPassword += randomFunc[funcName]();
+        generatePassword += randomFunc[funcName]();
       });
     }
-    
-    const yourPassword = generatedPassword
+
   }
   
   // Write password to the #password input
   function writePassword() {
     var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+    var passwordText = document.querySelector("password");
     
-    passwordText.value = password;
+    generatePassword.value = password;
     
   }
   
   // Add event listener to generate button
   generateBtn.addEventListener("click", writePassword);
-  
-  /*var length = 10,
-  charset = "ABCDEFGHIJKLMNOPQRSTUVWXY",
-  retVal = "";
-  return retVal;
-*/
+
+
 
 // Random Generator Functions
 
