@@ -15,13 +15,17 @@ function generatePassword() {
 
   let answerLength = prompt('Please select a character length between 8 and 128');
   answerLength = parseInt(answerLength);
-
+  
+  if (Number.isNaN(answerLength)) {
+    alert('You must use a number between 8 and 128, please try again!');
+    return 'Password not generated, please try again!';
+  };
   if (answerLength < 8) {
     alert('You must have 8 or more characters!');
-    return;
+    return 'Password not generated, please try again!';
   } else if (answerLength > 128) {
     alert('You must have 128 characters or less!');
-    return;
+    return 'Password not generated, please try again!';
   };
 
   // Password Selectors
